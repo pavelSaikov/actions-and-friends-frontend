@@ -18,6 +18,22 @@ class UserApi {
     }).then(createResponseHandler((user) => user));
   }
 
+  getUserById(id: string, token: string): Promise<IUser> {
+    return fetch(`${this.endpoint}/user/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(createResponseHandler((user) => user));
+  }
+
+  getUserByNickname(nickname: string, token: string): Promise<IUser> {
+    return fetch(`${this.endpoint}/user/nickname/${nickname}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(createResponseHandler((user) => user[0]));
+  }
+
   updateUser(user: Partial<IUser>, token: string): Promise<string> {
     return axios.patch(`${this.endpoint}/user`, user, {
       headers: { Authorization: `Bearer ${token}` },

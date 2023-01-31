@@ -1,7 +1,8 @@
-import { Fragment, useState } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { useEffect } from "react";
+import { Disclosure } from "@headlessui/react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { getUser, useTypedDispatch } from "@/store";
 
 const navigation = [
   {
@@ -30,6 +31,12 @@ export function AppWrapper({
   children: JSX.Element | JSX.Element[];
 }) {
   const router = useRouter();
+
+  const dispatch = useTypedDispatch();
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
 
   return (
     <>

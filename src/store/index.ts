@@ -5,6 +5,8 @@ import {
   actionsReducer,
   ActionsSlice,
   AuthSlice,
+  friendsReducer,
+  FriendsSlice,
   userReducer,
   UserSlice,
   writeTokenToLocalStorageMiddleware,
@@ -15,12 +17,14 @@ export interface Store {
   auth: AuthSlice;
   user: UserSlice;
   actions: ActionsSlice;
+  friends: FriendsSlice;
 }
 
 const appReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   actions: actionsReducer,
+  friends: friendsReducer,
 });
 
 export const store = configureStore({

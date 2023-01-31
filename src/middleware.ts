@@ -28,6 +28,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(Route.Login, request.url));
   }
 
+  console.log("check token");
   const isTokenValid = await authApi.checkToken(token ?? "");
   // console.log("isTokenValid", isTokenValid);
 
