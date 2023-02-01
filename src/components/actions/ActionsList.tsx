@@ -13,86 +13,6 @@ import {
 import { CreateEditActionForm } from "./CreateEditActionFrom";
 import { useForm } from "react-hook-form";
 
-// const EditDialog = ({
-//   onEditClose,
-//   onEdit,
-//   action,
-//   isOpen,
-// }: {
-//   onEditClose: () => void;
-//   onEdit: (updatedAction: Action) => void;
-//   action: Action;
-//   isOpen: boolean;
-// }) => {
-//   const { register, handleSubmit, formState, reset } = useForm({
-//     mode: "onChange",
-//     defaultValues: {
-//       value: action.actionName ?? "",
-//     },
-//   });
-
-//   const onAdd = useCallback(
-//     (actionName: string) => {
-//       onEdit({ ...action, actionName });
-//     },
-//     [action, onEdit]
-//   );
-
-//   useEffect(() => {}, []);
-
-//   return (
-//     <Dialog open={isOpen} onClose={onEditClose}>
-//       <Dialog.Panel>
-//         <Dialog as="div" className="relative z-10" onClose={closeModal}>
-//           <div className="fixed inset-0 overflow-y-auto">
-//             <div className="flex min-h-full items-center justify-center p-4 text-center">
-//               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-//                 <Dialog.Title
-//                   as="h3"
-//                   className="text-lg font-medium leading-6 text-gray-900"
-//                 >
-//                   Edit Action
-//                 </Dialog.Title>
-//                 <form className="w-[100%]" onSubmit={handleSubmit(onAdd)}>
-//                   <div className="mt-2">
-//                     <div className="flex justify-between items-center">
-//                       <div className="grow">
-//                         <input
-//                           type="text"
-//                           className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 ${
-//                             !isValid && "!border-red-600"
-//                           }`}
-//                           {...register("value", { minLength: 5 })}
-//                         />
-//                       </div>
-//                     </div>
-//                   </div>
-
-//                   <div className="mt-4">
-//                     <button
-//                       type="submit"
-//                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-//                       onClick={onEdit()}
-//                     >
-//                       Deactivate
-//                     </button>
-//                     <button
-//                       onClick={onEditClose}
-//                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-//                     >
-//                       Cancel
-//                     </button>
-//                   </div>
-//                 </form>
-//               </Dialog.Panel>
-//             </div>
-//           </div>
-//         </Dialog>
-//       </Dialog.Panel>
-//     </Dialog>
-//   );
-// };
-
 const ActionItem = memo(function ActionItem({
   action,
   onDelete,
@@ -183,8 +103,8 @@ export const ActionsList = () => {
   });
 
   const onDelete = useCallback(
-    (id: string) => {
-      dispatch(deleteAction(id));
+    async (id: string) => {
+      await dispatch(deleteAction(id));
       dispatch(getActions());
     },
     [dispatch]
@@ -220,7 +140,6 @@ export const ActionsList = () => {
           />
         ))}
       </div>
-      {/* <EditDialog onEdit={onEdit} onEditClose={onEditCancel} {...dialogState} /> */}
     </div>
   );
 };
