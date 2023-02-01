@@ -15,5 +15,5 @@ export const selectFriends = createSelector(
 
 export const selectFriendActions = createSelector(
   friendsSliceSelector,
-  (state) => state.selectedFriendActions
+  (state) => state.selectedFriendActions ?? []
 );

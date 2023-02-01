@@ -38,6 +38,10 @@ export const getFriends = createAsyncThunk(
 export const getFriendActions = createAsyncThunk(
   "friends/getFriendAction",
   async (id: string): Promise<Action[]> => {
+    if (id.length === 0) {
+      return Promise.resolve([]);
+    }
+
     return actionsApi.getActions(getToken(), id);
   }
 );

@@ -23,10 +23,8 @@ export const FriendsListWithActions = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (selectedUserId.length) {
-      dispatch(getFriendActions(selectedUserId));
-    }
-  }, [dispatch, selectedUserId, friends]);
+    dispatch(getFriendActions(selectedUserId));
+  }, [dispatch, selectedUserId]);
 
   const onSelectUser = useCallback((id: string) => setSelectedUserId(id), []);
 
@@ -34,8 +32,11 @@ export const FriendsListWithActions = () => {
     async (id: string) => {
       await dispatch(deleteFriend(id));
       dispatch(getFriends());
+      if (id === selectedUserId) {
+        setSelectedUserId("");
+      }
     },
-    [dispatch]
+    [dispatch, selectedUserId]
   );
 
   return (
