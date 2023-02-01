@@ -7,7 +7,7 @@ class UserApi {
   private endpoint: string;
 
   constructor() {
-    this.endpoint = ENDPOINT;
+    this.endpoint = process.env.NEXT_PUBLIC_API_URL ?? "";
   }
 
   getUser(token: string): Promise<IUser> {

@@ -5,7 +5,7 @@ class ActionsApi {
   private endpoint: string;
 
   constructor() {
-    this.endpoint = ENDPOINT;
+    this.endpoint = process.env.NEXT_PUBLIC_API_URL ?? "";
   }
 
   createAction(newAction: Omit<Action, "_id">, token: string): Promise<Action> {

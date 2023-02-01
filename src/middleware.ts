@@ -29,6 +29,7 @@ export async function middleware(request: NextRequest) {
   }
 
   console.log("check token");
+  console.log(token);
   const isTokenValid = await authApi.checkToken(token ?? "");
   // console.log("isTokenValid", isTokenValid);
 

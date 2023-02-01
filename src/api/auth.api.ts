@@ -29,18 +29,21 @@ class AuthApi {
   }
 
   checkToken(token: string) {
+    console.log(this.endpoint);
     return fetch(`${this.endpoint}/auth/check`, {
       headers: { Authorization: `Bearer ${token}` },
       method: "POST",
-    }).then(
-      createResponseHandler((response) => {
-        if (response.statusCode === 401) {
-          return false;
-        }
+    })
+      .then(
+        createResponseHandler((response) => {
+          if (response.statusCode === 401) {
+            return false;
+          }
 
-        return true;
-      })
-    );
+          return true;
+        })
+      )
+      .catch((e) => console.log(e));
   }
 }
 

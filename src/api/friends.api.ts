@@ -5,7 +5,7 @@ class FriendsApi {
   private endpoint: string;
 
   constructor() {
-    this.endpoint = ENDPOINT;
+    this.endpoint = process.env.NEXT_PUBLIC_API_URL ?? "";
   }
 
   getFriendships(token: string): Promise<Friendship[]> {
