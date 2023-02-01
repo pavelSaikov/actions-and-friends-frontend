@@ -5,7 +5,7 @@ class AuthApi {
   private endpoint = "";
 
   constructor() {
-    this.endpoint = ENDPOINT;
+    this.endpoint = process.env.NEXT_PUBLIC_API_URL ?? "";
   }
 
   signup(newUser: IUser) {
